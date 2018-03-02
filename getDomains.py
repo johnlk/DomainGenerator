@@ -1,7 +1,11 @@
 import pythonwhois as pwh
-domains = ['google.com', 'yahoo.com', 'flicktheories.com']
+
+def is_available(domain_name):
+	details = pwh.get_whois(domain_name)
+	return details.get('id', 'none') == 'none'
+
+domains = ['google.com', 'flicktheories.com', 'shit.com', 'ass.com', 'pornhub.com', 'kasdqoipurqwuirwek.com']
+
 for d in domains:
-	details = pwh.get_whois(d)
-	#print details['contacts']['registrant']
-	print details['status']
+	print '{} is available: {}'.format(d, is_available(d))
 
