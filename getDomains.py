@@ -2,6 +2,7 @@ import pythonwhois as pwh
 import datetime
 
 def is_expired(date): #date is a datetime object
+	#print(date)
 	today = datetime.datetime.now()
 	#compare year
 	if date.year > today.year:
@@ -22,8 +23,14 @@ def is_available(domain_name):
 		return True
 	return is_expired(details['expiration_date'][0])	#if expired it's available
 
-domains = ['qqqq.com', 'kasdqoipurqwuirwek.com']
+printed_one = False
 
-for d in domains:
-	print '{} is available: {}'.format(d, is_available(d))
+for x in xrange(97, 123):
+	for y in xrange(97, 123):
+		domain = chr(x) + chr(y) + '.com'
+		if is_available(domain):
+			print '{} is available!'.format(domain)
+			printed_one = True
 
+if not printed_one:
+	print "No 2 letter domains are available"
