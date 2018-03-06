@@ -25,7 +25,7 @@ def is_available(domain_name):
 
 printed_one = False
 
-for x in xrange(97, 123):
+"""for x in xrange(97, 123):
 	for y in xrange(97, 123):
 		domain = chr(x) + chr(y) + '.com'
 		if is_available(domain):
@@ -34,3 +34,9 @@ for x in xrange(97, 123):
 
 if not printed_one:
 	print "No 2 letter domains are available"
+"""
+
+domains = ['google.com', 'axcel.com']
+for d in domains:
+	if is_available(d):
+		print '{} is available!'.format(d)
