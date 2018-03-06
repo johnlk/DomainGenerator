@@ -29,15 +29,11 @@ def is_available(domain_name):
 all_words = open("./usa.txt", "r")
 available_domains = open("./available_domains.txt", "w")
 
-count = 0
-
 for word in all_words:
-	if count > 100:
-		break
 	domain = word[:-1] + ".com"
 	if is_available(domain):
+		print '{} is available!'.format(domain)
 		available_domains.write(domain + " is available!\n")
-	count += 1
 
 all_words.close()
 available_domains.close()
