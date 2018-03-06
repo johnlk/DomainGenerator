@@ -23,20 +23,14 @@ def is_available(domain_name):
 		return True
 	return is_expired(details['expiration_date'][0])	#if expired it's available
 
-printed_one = False
+all_words = open("./usa.txt", "r")
+available_domains = open("./available_domains.txt", "w")
 
-"""for x in xrange(97, 123):
-	for y in xrange(97, 123):
-		domain = chr(x) + chr(y) + '.com'
-		if is_available(domain):
-			print '{} is available!'.format(domain)
-			printed_one = True
+for word in all_words:
+	domain = word[:-1] + ".com"
+	"""if is_available(d):
+		print '{} is available!'.format(d)"""
+	available_domains.write(domain + " is available!\n")
 
-if not printed_one:
-	print "No 2 letter domains are available"
-"""
-
-domains = ['google.com', 'axcel.com']
-for d in domains:
-	if is_available(d):
-		print '{} is available!'.format(d)
+all_words.close()
+available_domains.close()
