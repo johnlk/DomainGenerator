@@ -28,33 +28,24 @@ def is_available(domain_name):
 		return True
 	return is_expired(details['expiration_date'][0]) #if expired it's available
 
-def is_pronouncable(word): #function needs to be created
-	return True
+def generate_new_word():
+  word = ""
+  word_length = int(random.uniform(4, 9)) #random word length from 4 - 8
+  for j in range(0, word_length):
+    word += chr(int(random.uniform(97, 122))) #get a char from random ascii value
+  return word
 
-#all_words = open("./usa.txt", "r") #dictionary file of english words
+domain_limit = 5 #how many domains do we want to find
+domains_found = 0
+
 available_domains = open("./available_domains.txt", "w") 
 
-for i in range(0, 10): #generate 10 words
-	word_length = int(random.uniform(4, 9)) #random word length from 4 - 8
-	word = ""
-	for j in range(0, word_length):
-		word += chr(int(random.uniform(97, 122))) #get a char from random ascii value
-		"""characters are picked with a uniform dist from a to z with equal probability
-			 it might be better to make an array of chars and have the vowels more
-			 likely to be chosen"""
-	if(is_pronouncable(word)): #if it's pronouncable check if it's availabe
-		domain = word + ".com"
-		if is_available(domain):
-			print '{} is available'.format(domain)
-			available_domains.write(domain + "\n")
+while domains_found < domain_limit:
+  word = generate_new_word()
+  domain = word + ".com"
+  if is_available(domain):
+    domains_found += 1
+    print '{} is available'.format(domain)
+    available_domains.write(domain + "\n")
 
-#loop to go through the dictionary file of words
-"""for word in all_words:
-	domain = word[:-1] + ".com" # removing last letter takes away the newline char in file
-	if is_available(domain):
-		print '{} is available!'.format(domain)
-		available_domains.write(domain + " is available!\n")"""
-
-#close files
-#all_words.close()
 available_domains.close()
