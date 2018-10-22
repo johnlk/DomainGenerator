@@ -2,7 +2,7 @@ import pythonwhois as pwh
 import datetime as dt
 import random
 
-def is_expired(experation_date):
+def is_expired(expiration_date):
   now = dt.datetime.now()
   return expiration_date < now
 
@@ -32,7 +32,7 @@ def generate_new_word():
 domain_limit = 25 #how many domains do we want to find
 domains_found = 0
 
-available_domains = open("./available_domains.txt", "w") 
+available_domains = open("./available_domains.txt", "a") 
 
 while domains_found < domain_limit:
   word = generate_new_word()
